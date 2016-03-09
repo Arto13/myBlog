@@ -41,12 +41,12 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 
-		redirect_to root_path
+		redirect_to posts_path
 	end
 
 	private
 
 	def post_params
-		params.require(:posts).permit(:title, :body)
+		params.require(:post).permit(:title, :body)
 	end
 end

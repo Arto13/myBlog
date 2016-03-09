@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<div id="sidebar">
-  <div id="logo">
-  			<%= link_to root_path do %>
-  				<%= image_tag "#" %>
-  			<% end %>
-  		</div>
+  <div id="sidebar">
+		<div id="logo">
+			<%= link_to root_path do %>
+				<%= image_tag "logo.png" %>
+			<% end %>
+		</div>
 
   <ul>
     <li class="catogory">Website</li>
@@ -31,7 +31,7 @@
 
 
   <% if !user_signed_in? %>
-  <p class="sign_in">Admin Login</p>
+  <p class="sign_in"><%= link_to "Admin Login", new_user_session_path %></p>
   <% end %>
 </div>
 
