@@ -17,18 +17,34 @@
 		</div>
 
   <ul>
-    <li class="catogory"></li>
+    <li class="catogory">Website</li>
     <li><%= link_to "Blog", root_path %></li>
     <li><%= link_to "About", about_path %></li>
   </ul>
 
   <ul>
-    <liclass="catogory"> </li>
+    <liclass="catogory"> Contact </li>
     <li><a href="https://www.facebook.com/artur.petrosyan.37" target="_blank"> Facebook </a></li>
     <li><a href="https://www.linkedin.com/in/artur-petrosyan-1887a3ba" target="_blank"> LinkedIn </a></li>
     <li><a href="https://github.com/Arto13" target="_blank"> Github </a></li>
     <li><a href="mailto:a.petrosyan@live.nl"> E-mail </a></li>
   </ul>
+
+
+<% if user_signed_in? %>
+  <div class="buttons" style="float: right">
+    <div class="log">
+    <button class="button"><%= link_to "New Post", new_post_path%></button><br>
+    <br>
+    <button class="button"><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+  </div>
+  </div>
+  <% end %>
+
+
+<% flash.each do |name, msg| %>
+<%= content_tag(:div, msg, class: "alert") %>
+<% end %>
 
 
   <% if !user_signed_in? %>
@@ -37,26 +53,7 @@
 </div>
 
 <div id="main_content">
-		<div id="header">
-			<% if current_page?(root_path) %>
-				<p>All Posts</p>
-			<% elsif current_page?(about_path) %>
-				<p>About</p>
-			<% else %>
-				<%= link_to "Back to All Posts", root_path %>
-			<% end %>
 
-  <% if user_signed_in? %>
-    <div class="buttons">
-      <button class="button"><%= link_to "New Post", new_post_path%></button>
-      <button class="button"><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
-    </div>
-    <% end %>
-  </div>
-
-  <% flash.each do |name, msg| %>
-  <%= content_tag(:div, msg, class: "alert") %>
-  <% end %>
 
   <%= yield %>
 </div>
